@@ -36,16 +36,16 @@ class Comment(models.Model):
         return ""+self.post.text+": "+self.text
 
 class React(models.Model):
-    REACTS_TYPES = [
-        'Curti',
-        'Amei',
-        'Rindo',
-        'Impressionado',
-        'Entristecido',
-        'Irritado',
-    ]
+    REACTS_TYPES = (
+        ('c','Curti'),
+        ('a','Amei'),
+        ('r','Rindo',),
+        ('i','Impressionado'),
+        ('e','Entristecido'),
+        ('p','Irritado'),
+    )
     
-    type = models.CharField(max_length=15,choices=REACTS_TYPES)
+    type = models.CharField(max_length=1,choices=REACTS_TYPES)
     date = models.DateField()
     post =  models.ForeignKey(Post, on_delete=models.CASCADE, related_name = 'reacts')
     profile  =  models.ForeignKey(Profile, on_delete=models.CASCADE, related_name = 'reacts')
